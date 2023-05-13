@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card">
+    <img src="assets/img/img.png" class="card-img-top" alt="img">
+    <div class="card-header text-center">
+      <h1>Login</h1>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p class="mb-3">ONLY ADMINISTRATOR CAN ACCESS TO THIS PAGE</p>
+        <div class="mb-3">
+          <label for="txtUsername" class="form-label">Username</label>
+          <input id="txtUsername" name="txtUsername" type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+            <div *ngIf="f['username'].errors['required']">Username is required</div>
+            <div *ngIf="f['username'].errors['pattern']">Username is not matched</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="txtPassword">Password: </label>
+          <input id="txtPassword" name="txtPassword" type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+          <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+            <div *ngIf="f['password'].errors['required']">Password is required</div>
+            <div *ngIf="f['password'].errors['pattern']">Password is not matched</div>
+          </div>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="submit" class="btn btn-secondary">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

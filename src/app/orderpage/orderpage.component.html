@@ -1,0 +1,23 @@
+<a type="button" class="btn btn-outline-success" routerLink="/cartdetail">Check my Cart!</a>
+<p></p>
+
+<div class="card" *ngIf="menus.length==0">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">No menu found</h5>
+    <p><small class="text-muted">This restaurant doesn't have a menu yet :(</small></p>
+  </div>
+</div>
+
+<p></p>
+<div class="card" *ngFor="let menu of menus">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">{{menu.name}}</h5>
+    <p class="card-text">{{menu.description}}</p>
+    <p class="card-text"><small class="text-muted">${{menu.price}}</small></p>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-info me-3" (click)="btnCart_click(menu)">Order</button>
+  </div>
+</div>

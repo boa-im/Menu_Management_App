@@ -1,0 +1,22 @@
+<div class="card" *ngIf="menus.length==0">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">No menu found</h5>
+    <p><small class="text-muted">Do you want to add a menu?<br><a routerLink="/add">Click Here!</a></small></p>
+  </div>
+</div>
+
+<button type="button" class="btn btn-outline-success" *ngIf="menus.length!=0" (click)="btnAdd_click()">Add a Menu</button>
+<p></p>
+<div class="card" *ngFor="let menu of menus">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">{{menu.name}}</h5>
+    <p class="card-text">{{menu.description}}</p>
+    <p class="card-text"><small class="text-muted">${{menu.price}}</small></p>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-info me-3" (click)="btnModify_click(menu)">Modify</button>
+    <button type="button" class="btn btn-warning me-3" (click)="btnDelete_click(menu)">Delete</button>
+  </div>
+</div>

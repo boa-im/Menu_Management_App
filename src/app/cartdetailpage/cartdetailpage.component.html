@@ -1,0 +1,32 @@
+<div class="card" *ngIf="orders.length==0">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">No order found</h5>
+    <p><small class="text-muted">Do you want to order a menu?<br><a routerLink="/order">Click Here!</a></small></p>
+  </div>
+</div>
+
+<div class="btn-group" role="group" *ngIf="orders.length!=0">
+  <a type="button" class="btn btn-success" routerLink="/order">Continue to order</a>
+  <button class="btn btn-outline-warning" (click)="btnClear_click()">Clear Cart</button>
+</div>
+<p></p>
+<div class="card" *ngIf="orders.length!=0">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-body">
+    <div class="container">
+      <p class="my-5 mx-5" style="font-size: 30px;">INVOICE</p>
+      <p>Please click the name to update or delete</p>
+      <div class="row" *ngFor="let order of orders">
+        <hr>
+        <div class="col-10">
+          <a class="float-start" (click)="btnOrder_click(order)" style="font-weight: bold; text-decoration: none; Color: Navy">{{order.name}}</a>
+        </div>
+        <div class="col-2">
+          <p class="float-end">{{order.quantity}}</p>
+        </div>
+        <p *ngIf="order.instruction != ''">&nbsp;&nbsp;Note: {{order.instruction}}</p>
+      </div>
+    </div>
+  </div>
+</div>

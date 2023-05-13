@@ -1,0 +1,23 @@
+<div class="card">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-header">
+    Reservation
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a style="font-weight: bold; text-decoration: none; Color: Navy" routerLink="/addreservation">Make a reservation</a></li>
+    <li class="list-group-item">
+      Check my Reservation<br>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="reservation.id" formControlName="id"
+                 [ngClass]="{ 'is-invalid': submitted && f['id'].errors }">
+          <button class="btn btn-outline-secondary" type="submit">Check</button>
+          <div *ngIf="submitted && f['id'].errors" class="invalid-feedback">
+            <div *ngIf="f['id'].errors['required']">Reservation Number is required</div>
+          </div>
+        </div>
+      </form>
+    </li>
+    <li class="list-group-item"><a style="font-weight: bold; text-decoration: none; Color: Navy" routerLink="/reservationlogin">Clear reservations (ADMIN ONLY)</a></li>
+  </ul>
+</div>

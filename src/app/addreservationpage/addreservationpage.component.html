@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="card">
+    <img src="assets/img/img.png" class="card-img-top" alt="img">
+    <div class="card-header text-center">
+      <h1>Make a Reservation</h1>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="txtName" class="form-label">Name</label>
+          <input id="txtName" name="txtName" type="text" class="form-control" [(ngModel)]="reservation.name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+          <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+            <div *ngIf="f['name'].errors['required']">Name is required</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="txtEmail" class="form-label">Email</label>
+          <input id="txtEmail" name="txtEmail" type="text" class="form-control" [(ngModel)]="reservation.email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['pattern']">Email should be email format</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="txtNOP" class="form-label">The Number of People</label>
+          <input id="txtNOP" name="txtNOP" type="number" class="form-control" [(ngModel)]="reservation.nop" formControlName="nop" [ngClass]="{ 'is-invalid': submitted && f['nop'].errors }">
+          <div *ngIf="submitted && f['nop'].errors" class="invalid-feedback">
+            <div *ngIf="f['nop'].errors['required']">The number of people are required</div>
+            <div *ngIf="f['nop'].errors['min']">The number of people should be greater than $0</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="visitingDate">Expected Date of Visit</label>
+          <input type="date" id="visitingDate" name="visitingDate" class="form-control" data-date="12/05/2023" [(ngModel)]="reservation.date" formControlName="date" [ngClass]="{ 'is-invalid': submitted && f['date'].errors }">
+          <div *ngIf="submitted && f['date'].errors" class="invalid-feedback">
+            <div *ngIf="f['date'].errors['required']">You have to choose a date</div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="cmdTime">Time</label>
+          <select class="form-select" id="cmdTime" [(ngModel)]="reservation.timeId" name="cmdTime" formControlName="time">
+            <option *ngFor="let time of times" [ngValue]="time.id">{{time.time}}</option>
+          </select>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="submit" class="btn btn-secondary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,37 @@
+<div class="card">
+  <img src="assets/img/img.png" class="card-img-top" alt="img">
+  <div class="card-header text-center">
+    <h1>Modify the Order</h1>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <h5 class="form-label">{{order.name}}</h5>
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="cmdOption">Option</label>
+        <select class="form-select" id="cmdOption" [(ngModel)]="order.optionId" name="option" formControlName="option">
+          <option *ngFor="let option of options" [ngValue]="option.id">{{option.name}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="txtQuantity" class="form-label">Quantity</label>
+        <input id="txtQuantity" name="txtQuantity" type="number" class="form-control" [(ngModel)]="order.quantity" formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f['quantity'].errors }">
+        <div *ngIf="submitted && f['quantity'].errors" class="invalid-feedback">
+          <div *ngIf="f['quantity'].errors['required']">Quantity is required</div>
+          <div *ngIf="f['quantity'].errors['min']">Quantity should be greater than 0</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="txtInstruction">Special Instruction: </label>
+        <textarea id="txtInstruction" name="txtInstruction" class="form-control" formControlName="instruction" [(ngModel)]="order.instruction">{{order.instruction}}</textarea>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-secondary">Update</button>
+        <a type="button" class="btn btn-light" (click)="btnDelete_click(order)">Delete</a>
+        <a type="button" class="btn btn-success" routerLink="/cartdetail">Back the Cart</a>
+      </div>
+    </form>
+  </div>
+</div>
+
